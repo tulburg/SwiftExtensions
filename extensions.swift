@@ -3,7 +3,7 @@ import UIKit
 
 extension UIColor {
     convenience init(hex: Int) {
-        self.init(red:(hex >> 16) & 0xff, green:(hex >> 8) & 0xff, blue:hex & 0xff)
+        self.init(red: CGFloat((hex >> 16) & 0xff) / 255.0, green: CGFloat((hex >> 8) & 0xff) / 255.0, blue: CGFloat(hex & 0xff) / 255.0, alpha: 1)
     }
 }
 
@@ -125,5 +125,13 @@ extension UIImage {
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext();
         return newImage
+    }
+}
+
+extension NSMutableData {
+    
+    func appendString(_ value : String) {
+        let data = value.data(using: String.Encoding.utf8, allowLossyConversion: true)
+        append(data!)
     }
 }
