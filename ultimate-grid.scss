@@ -1,15 +1,15 @@
 $sizes: 1,2,3,4,5,6,7,8,9,10,11,12;
 $spaces: 1,2,4,5,8,10,12,15,18,20,25,30,40,50,80,100,200;
 
-.flex-grid {
+.grid {
   display: grid;
   @for $s from 1 through length($sizes) {
-    &-#{nth($sizes, $s)} {
+    &.grid-#{nth($sizes, $s)} {
       grid-template-columns: repeat($s, 1fr);
     }
   }
   @for $sp from 1 through length($spaces) {
-    &-gap-#{nth($spaces, $sp)} {
+    &.gap-#{nth($spaces, $sp)} {
       grid-gap: #{nth($spaces, $sp)}px;
     }
   }
@@ -19,23 +19,23 @@ $spaces: 1,2,4,5,8,10,12,15,18,20,25,30,40,50,80,100,200;
       $sx2: nth($sizes, $s2);
       @if $sx1 != $sx2 {
         @if ($sx1 + $sx2 + $sx1) <= 12 {
-          &-#{$sx1}-#{$sx2}-#{$sx1} {
+          &.grid-#{$sx1}-#{$sx2}-#{$sx1} {
             grid-template-columns: #{$sx1}fr #{$sx2}fr #{$sx1}fr;
           }
         }
         @if ($sx1 + $sx2) <= 12 {
-          &-#{$sx1}-#{$sx2} {
+          &.grid-#{$sx1}-#{$sx2} {
             grid-template-columns: #{$sx1}fr #{$sx2}fr;
           }
-          &-#{$sx2}-#{$sx1} {
+          &.grid-#{$sx2}-#{$sx1} {
             grid-template-columns: #{$sx1}fr #{$sx2}fr;
           }
         }
         @if ($sx1 + $sx2 + $sx2) <= 12 {
-          &-#{$sx1}-#{$sx2}-#{$sx2} {
+          &.grid-#{$sx1}-#{$sx2}-#{$sx2} {
             grid-template-columns: #{$sx1}fr #{$sx2}fr #{$sx2}fr;
           }
-          &-#{$sx2}-#{$sx2}-#{$sx1} {
+          &.grid-#{$sx2}-#{$sx2}-#{$sx1} {
             grid-template-columns: #{$sx2}fr #{$sx2}fr #{$sx1}fr;
           }
         }
